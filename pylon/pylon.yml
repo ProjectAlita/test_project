@@ -1,0 +1,64 @@
+server:
+  path: /
+  host: "0.0.0.0"
+  port: 8080
+
+modules:
+  plugins:
+    provider:
+      type: folder
+      path: /data/plugins
+  #
+  requirements:
+    mode: relaxed
+    activation: bulk
+    provider:
+      type: folder
+      path: /data/requirements
+  #
+  config:
+    provider:
+      type: folder
+      path: /data/configs
+
+configs:
+  shared:
+    settings:
+      postgres_db: pylon
+      postgres_user: pylon
+      postgres_password: pylon
+
+sessions:
+  redis:
+    host: redis
+    password: $REDIS_PASSWORD
+  prefix: pylon_session_
+
+events:
+  redis:
+    host: redis
+    password: $REDIS_PASSWORD
+    queue: events
+    hmac_key: events_hmac_key
+    hmac_digest: sha512
+    callback_workers: 16
+
+rpc:
+  redis:
+    host: redis
+    password: $REDIS_PASSWORD
+    queue: rpc
+    hmac_key: rpc_hmac_key
+    hmac_digest: sha512
+    callback_workers: 16
+  id_prefix: "pylon_"
+
+socketio:
+  redis:
+    host: redis
+    password: $REDIS_PASSWORD
+    queue: socketio
+
+application:
+  SECRET_KEY: pylon_key
+  SESSION_COOKIE_NAME: pylon_session_id
