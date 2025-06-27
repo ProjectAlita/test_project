@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # coding=utf-8
+# pylint: disable=C0114
 
 #   Copyright 2024 getcarrier.io
 #
@@ -15,6 +16,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-""" Module init """
 
-from .module import Module
+from .tools import make_event_node
+
+from .mock import MockEventNode
