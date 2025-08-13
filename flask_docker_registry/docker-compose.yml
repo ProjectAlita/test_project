@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  registry:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry-data:/var/lib/registry
+    environment:
+      - AUTH_ENABLED=true
+      - AUTH_USER=admin
+      - AUTH_PASSWORD=password
+      - AUTH_TOKEN_EXPIRY=3600
+
+volumes:
+  registry-data:
